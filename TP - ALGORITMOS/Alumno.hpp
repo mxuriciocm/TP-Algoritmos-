@@ -1,57 +1,25 @@
-#pragma once
-#include <iostream>
+#ifndef __ALUMNO_HPP__
+#define __ALUMNO__HPP__
+#include "Persona.hpp"
 
-using namespace std;
-
-class Alumno{
+class Alumno : public Persona{
+	string carrera;
+	unsigned short ciclo;
 public:
-	Alumno(string n,int e,string cod,string corr){
-		this->nombre=n;
-		this->edad=e;
-		this->codigo=cod;
-		this->correo=corr;
-		
-	}
-	~Alumno(){}
-	string getNombre(){
-		return this->nombre;
-	}
-	void setNombre(string n){
-		this->nombre=n;
-	}
-	int getEdad(){
-		return this->edad;
-	}
-	void setEdad(int e) {
-		this->edad = e;
-	}
-	string getCodigo(){
-		return this->codigo;
-	}
-	void setCodigo(string cod) {
-		this->codigo = cod;
-	}
-	string getCorreo() {
-		return this->correo;
-	}
-	void getCorreo(string corr) {
-		this->correo = corr;
-	}
-	void Datos_Alumno(){
-		cout<<"Datos"<<endl;
-		cout<<getNombre()<<endl;
-		cout<<getEdad()<<endl;
-		cout<<getCodigo()<<endl;
-		cout<<getCorreo()<<endl;
-	}
+    Alumno(string nombre = "", string rol = "", string codigo = "", string correo = "", unsigned short edad = 25, string carrera = "", unsigned short ciclo = 1)
+        : Persona(nombre, rol, codigo, correo, edad), carrera(carrera), ciclo(ciclo)
+    {}
 
+    string getCarrera()  {
+        return carrera;
+    }
 
+    unsigned short getCiclo()  {
+        return ciclo;
+    }
 
-private:
-	string nombre;
-	int edad;
-	string codigo;
-	string correo;
+    string toString() {
+        return Persona::toString() + "Carrera: " + carrera + "\nCiclo: " + to_string(ciclo) + "\n";
+    }
 };
-
-
+#endif // !__ALUMNO_HPP__
