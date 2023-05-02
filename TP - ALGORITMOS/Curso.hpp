@@ -8,12 +8,26 @@ class Curso{
 	string nombre;
 	string seccion;
 	string codigoCurso;
+	string carrera;
+	unsigned short ciclo;
 public:
-	Curso(string nombre = "", string seccion="",string codigo=""): nombre(nombre), seccion(seccion), codigo(codigo) {}
+	Curso(string nombre = "", string seccion="",string codigoCurso=""): nombre(nombre), seccion(seccion), codigoCurso(codigoCurso) {}
 	~Curso(){}
 
 	string toString(){
 		return nombre + " " + seccion + " " + codigoCurso + "\n"; 
+	}
+
+	string getNombre() {
+		return nombre;
+	}
+
+	string getCarrera() {
+		return carrera;
+	}
+
+	unsigned short getCiclo() {
+		return ciclo;
 	}
 };
 

@@ -9,12 +9,8 @@ class Libros {
 	string codigoLibro;
 
 public:
-	Libros(string titulo = " ", string codigoLibro = " ", string correo = " ") : codigoLibro(codigoLibro) 
+	Libros(string titulo = " ", string codigoLibro = " ", string correo = " ") : codigoLibro(codigoLibro)
 	{}
-	
-	virtual string toString() {
-		return nombre + " " + rol + " " + to_string(edad) + "\n";
-	}
-
+};
 
 #endif

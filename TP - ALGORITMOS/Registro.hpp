@@ -1,9 +1,10 @@
 #ifndef __REGISTRO_HPP__
 #define __REGISTRO_HPP__
+#include "Alumno.hpp"
 #include <iostream>
 #include <string>
 #include <fstream>
-
+#include <cctype>
 using std::string;
 using std::cout;
 using std::cin;
@@ -16,10 +17,15 @@ class Registro
 private:
 	string usuario;
 	string contrasena;
-
+	string rol;
 public:
 	Registro(string usuario="", string contrasena="") : usuario(usuario), contrasena(contrasena){}
 	
+
+	string getRol() {
+		return rol;
+	}
+
 	void guardarRegistro(string usuario, string contrasena){
 		ofstream archivo;
 		ifstream archivo1;
@@ -38,8 +44,23 @@ public:
 		{
 			archivo.open("registro.txt", std::ios::app);
 			if (archivo.is_open()) {
-				archivo << usuario << endl;
-				archivo << contrasena << endl;
+				archivo << usuario << " ";
+				archivo << contrasena << " ";
+				switch (tolower(usuario[0])) {
+				case 'u':
+					rol = "alumno";
+					break;
+				case 'p':
+					rol = "profesor";
+					break;
+				case 'a':
+					rol = "administrador";
+					break;
+				default:
+					rol = "desconocido";
+					break;
+				}
+				archivo << rol << endl;
 				archivo.close();
 				cout << "Registro exitoso" << endl;
 			}
@@ -83,13 +104,13 @@ public:
 		cout << "Bienvenido a la aplicacion" << endl;
 		cout << "1. Registrarse" << endl;
 		cout << "2. Iniciar sesion" << endl;
-		cout << "Ingrese una opcion: " << endl;
+		cout << "Ingrese una opcion: ";
 		cin >> opc;
 		switch (opc) {
-		case 1: {
-			cout << "Ingrese su usuario: " << endl;
+			case 1: {
+			cout << "\nIngrese su usuario: ";
 			cin >> usuario;
-			cout << "Ingrese su contrasena: " << endl;
+			cout << "Ingrese su contrasena: ";
 			cin >> contrasena;
 			if (usuario != "" && contrasena != "") {
 				guardarRegistro(usuario, contrasena);
@@ -97,11 +118,10 @@ public:
 			else {
 				cout << "Usuario o contrasena invalidos" << endl;
 			}
-			break;
-		}
+				break;
+			}
 		
 		case 2: {
-			//opcion 2
 			cout << "Ingrese su usuario: " << endl;
 			cin >> usuario;
 			cout << "Ingrese su contrasena: " << endl;
@@ -113,8 +133,7 @@ public:
 				cout << "Usuario o contrasena invalidos" << endl;
 			}
 			break;
-		}
-			  
+		}  
 			 
 		}
 	}

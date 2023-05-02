@@ -19,7 +19,6 @@ public:
         this->codigoAlumno = codigoAlumno;
         this->nombreDeCurso = nombreDeCurso;
     }
-    ~LibroNotas();
 
     void mostrarNotas(){
         cout << "Codigo del alumno: " << codigoAlumno << "\nNombre del curso: " << nombreDeCurso << "\n";
@@ -29,7 +28,5 @@ public:
         });
     }
 };
-
-
 
 #endif

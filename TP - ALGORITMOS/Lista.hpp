@@ -3,13 +3,13 @@
 #include <functional>
 using namespace std;
 
-template <class Generico>
+template <class X>
 class Nodo {
 public:
-	Generico dato;
-	Nodo<Generico>* siguiente;
-	Nodo<Generico>* anterior;
-	Nodo(Generico d){
+	X dato;
+	Nodo<X>* siguiente;
+	Nodo<X>* anterior;
+	Nodo(X d){
 		dato=d;
 		siguiente=nullptr;
 		anterior=nullptr;
@@ -17,11 +17,11 @@ public:
 	~Nodo(){}
 };
 
-template <class Generico>
+template <class X>
 class Lista {
-	Nodo<Generico>* inicio;
-	Nodo<Generico>* fin;
-	int cantidad;
+	Nodo<X>* inicio;
+	Nodo<X>* fin;
+	size_t cantidad;
 public:
 	Lista(){
 		inicio=nullptr;
@@ -29,8 +29,8 @@ public:
 		cantidad=0;
 	}
 	~Lista(){}
-	void pushback(Generico d) {
-		Nodo<Generico>* temp = new Nodo<Generico>(d);
+	void pushback(X d) {
+		Nodo<X>* temp = new Nodo<X>(d);
 		if (Vacio()) {
 			inicio= temp;
 			fin=temp;
@@ -56,8 +56,8 @@ public:
 		}
 		cantidad++;
 	}*/
-	void MOSTRAR(function<void (Generico)>mostrar) {
-		Nodo<Generico>* temp = inicio;
+	void mostrar(function<void (X)>mostrar) {
+		Nodo<X>* temp = inicio;
 		while (temp!=nullptr){
 			mostrar(temp->dato);
 			temp = temp->siguiente;
