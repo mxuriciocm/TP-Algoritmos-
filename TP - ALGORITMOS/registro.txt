@@ -1,5 +1,1 @@
-
-u22222 asdada alumno mauricio 0  52428
-u223232 aasf alumno maurici 12 ingeniera 10
-u2021212121 masiakda alumno mauricio 12 software 7
-u222021 kaskadad alumno maurcio 19 software 4
+u20221 12345 alumno diego 19 software 3

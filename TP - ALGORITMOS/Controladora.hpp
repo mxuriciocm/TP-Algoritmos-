@@ -8,16 +8,14 @@
 
 using std::endl;
 using std::string;
+using std::cout;
 
 class Controladora {
 private:
 	Registro* login;
 	string rol;
 	string usuario;
-	unsigned short ciclo;
-	string carrera;
-	string nombre;
-	string codigo;
+	string correo;
 public:
 	Controladora(string rol = ""): rol(rol) {
 		login = new Registro();
@@ -26,39 +24,51 @@ public:
 
 	void inicioPrograma() {
 		login->menuRegistro();
-		rol = login->getRol();
-		usuario = login->getUsuario();
+		this->rol = login->getRol();
+		this->usuario = login->getUsuario();
+		this->correo = login->getUsuario()+"@estudia.com";
 		Controladora::inicio();
 	}
 
-	void inicio(){
-		if(rol == "alumno"){
+
+	void inicio() {
+		if (rol == "alumno") {
 			ifstream archivo;
-			string linea;	
+			string linea;
+			string contrasena, tipo, nombre, carrera;
+			unsigned short edad, ciclo;
+
 			archivo.open("registro.txt");
 
-			if(archivo.fail()){
-				cout << "No se pudo abrir el archivo";
+			if (archivo.fail())
+			{
+				cout << "No se pudo abrir el archivo" << endl;
+			}	
+			else
+			{
+				while (getline(archivo, linea))
+				{
+					string UserEncontrar;
+					archivo >> UserEncontrar;
+					if (UserEncontrar == this->usuario)
+					{
+						cout << "usuario encontrado" << endl;
+						archivo >> contrasena;
+						archivo >> tipo;
+						archivo >> nombre;
+						archivo >> edad;
+						archivo >> carrera;
+						archivo >> ciclo;
+						break;
+					}
+				}
 			}
-			
-			//while(!archivo.eof()){
-				//buscar hasta encontrar un espacio
-			//	nombre = linea.substr(0, linea.find(" "));
-			//	carrera = linea.substr(linea.find(" ") + 1, linea.find(" "));
-			//	ciclo = stoi(linea.substr(linea.find(" ") + 1, linea.find(" ")));	
-			//}
-
-			while (getline(archivo, linea)) {
-				// Buscar hasta encontrar un espacio
-				nombre = linea.substr(0, linea.find(" "));
-				carrera = linea.substr(linea.find(" ") + 1, linea.find_last_of(" ") - linea.find(" ") - 1);
-				ciclo = stoi(linea.substr(linea.find_last_of(" ") + 1));
-			}
-
 			archivo.close();
-			Alumno* alumno = new Alumno(nombre, codigo, carrera, ciclo);
-			cout << "Bienvenido " << alumno->getNombre() << endl;
-			cout << "Carrera: " << alumno->getCarrera() << endl;
+
+			Alumno* alumno = new Alumno(nombre, this->usuario, this->correo);
+			cout << "Bienvenido " << alumno->getCodigo() << endl;
+			cout << "correo: " << alumno->getCorreo() << endl;
+			cout << "nombre: " << alumno->getNombre() << endl;
 			//opciones 
 			cout << "1. Ver cursos" << endl;
 			cout << "2. Ver notas" << endl;

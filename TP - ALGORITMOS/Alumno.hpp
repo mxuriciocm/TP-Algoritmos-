@@ -7,11 +7,11 @@ using namespace std;
 
 class Alumno : public Persona{
 private:
-	unsigned short ciclo;
+	unsigned int ciclo;
 	string carrera;
 	vector<Curso*> cursos;
 public:
-	Alumno(string nombre = "", string codigo = "", string correo = "", unsigned short edad = 25, string carrera = "", unsigned short ciclo = 1)
+	Alumno(string nombre = "", string codigo = "", string correo = "", unsigned short edad = 25, string carrera = "", unsigned short ciclo = 10)
         : Persona(nombre, "alumno", codigo, correo, edad), carrera(carrera), ciclo(ciclo)
     {}
 

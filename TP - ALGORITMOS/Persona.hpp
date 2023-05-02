@@ -13,10 +13,18 @@ class Persona {
 	string correo;
 	unsigned short edad;
 public:
-	Persona(string nombre = " ", string rol = "", string codigo = " ", string correo = " ", unsigned short edad = 25) : nombre(nombre), rol(rol), codigo(codigo), correo(correo), edad(edad) 
+	Persona(string nombre = " ", string rol = "", string codigo = " ", string correo = " ", unsigned short edad = 1) : nombre(nombre), rol(rol), codigo(codigo), correo(correo), edad(edad) 
 	{}
 	virtual string getNombre() {
 		return nombre;
+	}
+
+	virtual string getCodigo(){
+		return codigo;
+	}
+
+	virtual string getCorreo(){
+		return correo;
 	}
 	virtual string toString() {
 		return nombre + " " + rol + " " + to_string(edad) + "\n";

@@ -30,6 +30,7 @@ public:
 	}
 
 	void guardarRegistro(string usuario, string contrasena){
+		
 		//Datos para el usuario
 		unsigned short edad, ciclo;
 		string nombre, carrera;
@@ -50,7 +51,7 @@ public:
 		}
 		if (!usuarioEncontrado)
 		{
-			//Pedir datosw al usuario
+			//Pedir datos al usuario
 			cout << "Ingrese su nombre:";	
 			cin >> nombre;
 			cout << "Ingrese su edad:";
@@ -59,6 +60,7 @@ public:
 			cin >> carrera;
 			cout << "Ingrese su ciclo:";
 			cin >> ciclo;
+
 
 			archivo.open("registro.txt", std::ios::app);
 			
@@ -79,6 +81,7 @@ public:
 					rol = "desconocido";
 					break;
 				}
+				this->rol = rol;
 				archivo << rol << " ";
 				archivo << nombre << " ";
 				archivo << edad << " ";
@@ -93,36 +96,33 @@ public:
 		}
 	}
 	
-	void validarRegistro(string usuario, string contrasena) {
-		
+	void validarRegistro(string usuarioIntroducido, string contrasenaIntroducida) {
+
 		ifstream archivo("registro.txt");
 		bool usuarioEncontrado = false;
 		bool contrasenaEncontrada = false;
 		string linea;
-
-
 		while (getline(archivo, linea)) {
-			if (linea == usuario) {
+			if (linea == usuarioIntroducido) {
 				usuarioEncontrado = true;
 				if (getline(archivo, linea)) {
-					if (linea == contrasena) {
+					if (linea == contrasenaIntroducida) {
 						contrasenaEncontrada = true;
 					}
 				}
-
 			}
 		}
-
 		archivo.close();
 		if (usuarioEncontrado && contrasenaEncontrada == true) {
 			cout << "Se inicio sesion" << endl;
-		} else{
+		}
+		else {
 			cout << "Usuario y/o contrasena incorrectos" << endl;
 		}
 	}
 
 	void menuRegistro() {
-		string usuario, contrasena;
+		string usuarioIngresada, contrasenaIngresada;
 		int opc;
 		cout << "Bienvenido a la aplicacion" << endl;
 		cout << "1. Registrarse" << endl;
@@ -132,11 +132,11 @@ public:
 		switch (opc) {
 			case 1: {
 			cout << "\nIngrese su usuario: ";
-			cin >> usuario;
+			cin >> usuarioIngresada;
 			cout << "Ingrese su contrasena: ";
-			cin >> contrasena;
-			if (usuario != "" && contrasena != "") {
-				guardarRegistro(usuario, contrasena);
+			cin >> contrasenaIngresada;
+			if (usuarioIngresada != "" && contrasenaIngresada != "") {
+				guardarRegistro(usuarioIngresada, contrasenaIngresada);
 			}
 			else {
 				cout << "Usuario o contrasena invalidos" << endl;
@@ -146,11 +146,11 @@ public:
 		
 		case 2: {
 			cout << "Ingrese su usuario: " << endl;
-			cin >> usuario;
+			cin >> usuarioIngresada;
 			cout << "Ingrese su contrasena: " << endl;
-			cin >> contrasena;
-			if (usuario != "" && contrasena != "") {
-				validarRegistro(usuario, contrasena);
+			cin >> contrasenaIngresada;
+			if (usuarioIngresada != "" && contrasenaIngresada != "") {
+				validarRegistro(usuarioIngresada, contrasenaIngresada);
 			}
 			else {
 				cout << "Usuario o contrasena invalidos" << endl;
