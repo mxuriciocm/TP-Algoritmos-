@@ -25,8 +25,16 @@ public:
 	string getRol() {
 		return rol;
 	}
+	string getUsuario(){
+		return usuario; 
+	}
 
 	void guardarRegistro(string usuario, string contrasena){
+		//Datos para el usuario
+		unsigned short edad, ciclo;
+		string nombre, carrera;
+
+		//para los datos
 		ofstream archivo;
 		ifstream archivo1;
 		archivo1.open("registro.txt");
@@ -42,7 +50,18 @@ public:
 		}
 		if (!usuarioEncontrado)
 		{
+			//Pedir datosw al usuario
+			cout << "Ingrese su nombre:";	
+			cin >> nombre;
+			cout << "Ingrese su edad:";
+			cin >> edad;
+			cout << "Ingrese su carrera:";
+			cin >> carrera;
+			cout << "Ingrese su ciclo:";
+			cin >> ciclo;
+
 			archivo.open("registro.txt", std::ios::app);
+			
 			if (archivo.is_open()) {
 				archivo << usuario << " ";
 				archivo << contrasena << " ";
@@ -60,7 +79,11 @@ public:
 					rol = "desconocido";
 					break;
 				}
-				archivo << rol << endl;
+				archivo << rol << " ";
+				archivo << nombre << " ";
+				archivo << edad << " ";
+				archivo << carrera << " ";
+				archivo << ciclo << endl;
 				archivo.close();
 				cout << "Registro exitoso" << endl;
 			}

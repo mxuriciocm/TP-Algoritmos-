@@ -15,7 +15,9 @@ class Persona {
 public:
 	Persona(string nombre = " ", string rol = "", string codigo = " ", string correo = " ", unsigned short edad = 25) : nombre(nombre), rol(rol), codigo(codigo), correo(correo), edad(edad) 
 	{}
-	
+	virtual string getNombre() {
+		return nombre;
+	}
 	virtual string toString() {
 		return nombre + " " + rol + " " + to_string(edad) + "\n";
 	}
