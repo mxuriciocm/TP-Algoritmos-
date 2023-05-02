@@ -2,6 +2,8 @@
 
 int main() {
 	Controladora* Programa = new Controladora();
-	Programa->inicioPrograma();
-
+	while (true)
+	{
+		Programa->inicioPrograma();
+	}
 }

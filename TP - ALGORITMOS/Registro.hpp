@@ -21,17 +21,31 @@ public:
 	Registro(string usuario="", string contrasena="") : usuario(usuario), contrasena(contrasena){}
 	
 	void guardarRegistro(string usuario, string contrasena){
-
 		ofstream archivo;
-		archivo.open("registro.txt", std::ios::app);
-		if (archivo.is_open()) {
-			archivo << usuario << endl;
-			archivo << contrasena << endl;
-			archivo.close();
-			cout << "Registro exitoso" << endl;
+		ifstream archivo1;
+		archivo1.open("registro.txt");
+		string linea;
+		bool usuarioEncontrado = false;
+
+		while (getline(archivo1, linea)) {
+			if (linea == usuario) {
+				cout << "El usuario ya existe" << endl;	
+				usuarioEncontrado = true;
+				break;
+			}
 		}
-		else {
-			cout << "Error al abrir el archivo" << endl;
+		if (!usuarioEncontrado)
+		{
+			archivo.open("registro.txt", std::ios::app);
+			if (archivo.is_open()) {
+				archivo << usuario << endl;
+				archivo << contrasena << endl;
+				archivo.close();
+				cout << "Registro exitoso" << endl;
+			}
+			else {
+				cout << "Error al abrir el archivo" << endl;
+			}
 		}
 	}
 	
