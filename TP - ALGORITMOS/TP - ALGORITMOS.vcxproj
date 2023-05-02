@@ -127,7 +127,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Administrador.hpp" />
+    <ClInclude Include="Alumno.hpp" />
+    <ClInclude Include="Controladora.hpp" />
+    <ClInclude Include="Curso.hpp" />
+    <ClInclude Include="Foro.hpp" />
+    <ClInclude Include="LibroNotas.hpp" />
+    <ClInclude Include="Libros.hpp" />
+    <ClInclude Include="Lista.hpp" />
+    <ClInclude Include="Notas.hpp" />
+    <ClInclude Include="Persona.hpp" />
+    <ClInclude Include="Profesor.hpp" />
     <ClInclude Include="Registro.hpp" />
+    <ClInclude Include="Evaluaciones.hpp" />
+    <ClInclude Include="Vector.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Cursos.txt" />
+    <Text Include="registro.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

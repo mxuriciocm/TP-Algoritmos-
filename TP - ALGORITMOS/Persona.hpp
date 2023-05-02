@@ -2,7 +2,9 @@
 #define __PERSONA_HPP__
 #include <iostream>
 #include <string>
-using namespace std;
+
+using std::string;
+using std::to_string;
 
 class Persona {
 	string nombre;
@@ -13,6 +15,7 @@ class Persona {
 public:
 	Persona(string nombre = " ", string rol = "", string codigo = " ", string correo = " ", unsigned short edad = 25) : nombre(nombre), rol(rol), codigo(codigo), correo(correo), edad(edad) 
 	{}
+	
 	virtual string toString() {
 		return nombre + " " + rol + " " + to_string(edad) + "\n";
 	}

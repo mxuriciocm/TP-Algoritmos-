@@ -14,47 +14,95 @@ using std::ifstream;
 class Registro
 {
 private:
-	string user;
-	string pass;
+	string usuario;
+	string contrasena;
 
 public:
-	Registro(string user="", string pass="") : user(user), pass(pass){
-		user = user;
-		pass = pass;
-	}
-	~Registro();
+	Registro(string usuario="", string contrasena="") : usuario(usuario), contrasena(contrasena){}
+	
+	void guardarRegistro(string usuario, string contrasena){
 
-	void validarRegistro(string user, string pass){
-		//validar de un archivo de texto primera linea user y segunda pass
 		ofstream archivo;
 		archivo.open("registro.txt", std::ios::app);
-		archivo << user << endl;
-		archivo << pass << endl;
+		if (archivo.is_open()) {
+			archivo << usuario << endl;
+			archivo << contrasena << endl;
+			archivo.close();
+			cout << "Registro exitoso" << endl;
+		}
+		else {
+			cout << "Error al abrir el archivo" << endl;
+		}
+	}
+	
+	void validarRegistro(string usuario, string contrasena) {
+		
+		ifstream archivo("registro.txt");
+		bool usuarioEncontrado = false;
+		bool contrasenaEncontrada = false;
+		string linea;
+
+
+		while (getline(archivo, linea)) {
+			if (linea == usuario) {
+				usuarioEncontrado = true;
+				if (getline(archivo, linea)) {
+					if (linea == contrasena) {
+						contrasenaEncontrada = true;
+					}
+				}
+
+			}
+		}
+
 		archivo.close();
-	}
-	void setUsuario(string user){
-		this->user = user;
-	}
-	void setPass(string pass){
-		this->pass = pass;
-	}
-	string getUsuario(){
-		return user;
-	}
-	string getPass(){
-		return pass;
+		if (usuarioEncontrado && contrasenaEncontrada == true) {
+			cout << "Se inicio sesion" << endl;
+		} else{
+			cout << "Usuario y/o contrasena incorrectos" << endl;
+		}
 	}
 
-	//menu
-	void menuRegistro(){
-		string user, pass;
-		cout << "Ingrese su usuario: ";
-		cin >> user;
-		cout << "Ingrese su contrasena: ";
-		cin >> pass;
-		setUsuario(user);
-		setPass(pass);
-		validarRegistro(user, pass);
+	void menuRegistro() {
+		string usuario, contrasena;
+		int opc;
+		cout << "Bienvenido a la aplicacion" << endl;
+		cout << "1. Registrarse" << endl;
+		cout << "2. Iniciar sesion" << endl;
+		cout << "Ingrese una opcion: " << endl;
+		cin >> opc;
+		switch (opc) {
+		case 1: {
+			cout << "Ingrese su usuario: " << endl;
+			cin >> usuario;
+			cout << "Ingrese su contrasena: " << endl;
+			cin >> contrasena;
+			if (usuario != "" && contrasena != "") {
+				guardarRegistro(usuario, contrasena);
+			}
+			else {
+				cout << "Usuario o contrasena invalidos" << endl;
+			}
+			break;
+		}
+		
+		case 2: {
+			//opcion 2
+			cout << "Ingrese su usuario: " << endl;
+			cin >> usuario;
+			cout << "Ingrese su contrasena: " << endl;
+			cin >> contrasena;
+			if (usuario != "" && contrasena != "") {
+				validarRegistro(usuario, contrasena);
+			}
+			else {
+				cout << "Usuario o contrasena invalidos" << endl;
+			}
+			break;
+		}
+			  
+			 
+		}
 	}
 };
 
