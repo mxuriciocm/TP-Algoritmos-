@@ -5,6 +5,7 @@
 #include <string>
 #include <fstream>
 #include <cctype>
+#include <sstream>
 using std::string;
 using std::cout;
 using std::cin;
@@ -97,27 +98,52 @@ public:
 	}
 	
 	void validarRegistro(string usuarioIntroducido, string contrasenaIntroducida) {
-
 		ifstream archivo("registro.txt");
 		bool usuarioEncontrado = false;
 		bool contrasenaEncontrada = false;
-		string linea;
-		while (getline(archivo, linea)) {
-			if (linea == usuarioIntroducido) {
-				usuarioEncontrado = true;
-				if (getline(archivo, linea)) {
-					if (linea == contrasenaIntroducida) {
-						contrasenaEncontrada = true;
-					}
+		if (archivo.is_open()) {
+			string linea;
+
+			while (getline(archivo, linea)) {
+				istringstream ss(linea);
+				string usuarioActual, contrasenaActual, rolActrual;
+				ss >> usuarioActual >> contrasenaActual >> rolActrual;
+
+				if (usuarioActual == usuarioIntroducido && contrasenaActual == contrasenaIntroducida) {
+					archivo.close();
+					usuarioEncontrado = true;
+					contrasenaEncontrada = true;
+					this->usuario = usuarioActual;
 				}
+				if (rolActrual == "alumno") {
+					this->rol = "alumno";
+				}
+				else if(rolActrual == "profesor")
+				{
+					this->rol = "profesor";
+				}
+				else if(rolActrual == "administrador")
+				{
+					this->rol = "administrador";
+				}
+				else
+				{
+					this->rol = "desconocido";
+				}
+
+			}
+			archivo.close();
+			
+
+			if (usuarioEncontrado && contrasenaEncontrada) {
+				cout << "Iniciaste sesion" << usuario << endl;
+			}
+			else {
+				cout << "Usuario o contrasena incorrectos" << endl;
 			}
 		}
-		archivo.close();
-		if (usuarioEncontrado && contrasenaEncontrada == true) {
-			cout << "Se inicio sesion" << endl;
-		}
 		else {
-			cout << "Usuario y/o contrasena incorrectos" << endl;
+			std::cout << "No se pudo abrir el archivo para verificar las credenciales." << std::endl;
 		}
 	}
 
