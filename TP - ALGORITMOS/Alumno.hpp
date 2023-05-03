@@ -2,18 +2,25 @@
 #define __ALUMNO_HPP__
 #include "Persona.hpp"
 #include "Curso.hpp"
-#include <vector>
+#include "Vector.hpp"
+#include "stack.hpp"
+#include <fstream>
+#include <string>
 using namespace std;
 
 class Alumno : public Persona{
 private:
 	unsigned short ciclo;
 	string carrera;
-	vector<Curso*> cursos;
+	//Vector<Curso*> cursos;
+	Stack<Curso*> cursosMatriculados;
+	Stack<Curso*> cursosDisponibles;
 public:
 	Alumno(string nombre = "", string codigo = "", string correo = "", unsigned short edad = 25, string carrera = "", unsigned short ciclo = 10)
         : Persona(nombre, "alumno", codigo, correo, edad), carrera(carrera), ciclo(ciclo)
-    {}
+    {
+		cargarCursos();
+	}
 
 	string getCarrera(){
 		return carrera;
@@ -23,32 +30,29 @@ public:
 		return ciclo;
 	}
 
-	string toString() {
-		return Persona::toString() + carrera + " " + to_string(ciclo) + "\n";
+	void cargarCursos() {
+		ifstream archivo;
+		archivo.open("cursos.txt");
+		string idx, nombre, codigo;
+		unsigned short ciclo;
+		while (archivo >> idx >> nombre >> carrera >> ciclo) {
+			cursosDisponibles.push(new Curso(nombre, codigo, carrera, (int)ciclo));
+		}
+		archivo.close();
+		//imprimir cursos disponibles
+		//cursosDisponibles.forEach([](Curso* c){
+		//	cout << c->toString() << endl;
+		//});
 	}
 
-	void inscribirCurso(Curso* c) {
-		if (c->getCarrera() != carrera) {
-			cout << "No puedes inscribirte en este curso porque no es de tu carrera" << endl;
-			return;
-		}
-
-		if (c->getCiclo() < ciclo) {
-			cout << "No puedes inscribirte en este curso porque ya lo has pasado" << endl;
-			return;
-		}
-		cursos.push_back(c);
-		cout << "Te has inscrito en el curso " << c->getNombre() << ".\n";
+	void mostrarCursos(){
+		cursosDisponibles.forEach([](Curso* c){
+			cout << c->toString();
+		});
 	}
 
-	void retirarCurso(Curso* c) {
-		auto it = find(cursos.begin(), cursos.end(), c);
-		if (it == cursos.end()) {
-			cout << "No estás inscrito en este curso.\n";
-			return;
-		}
-		cursos.erase(it);
-		cout << "Te has retirado del curso " << c->getNombre() << ".\n";
+	void matriculaCurso(){
+		//cursosMatriculados.push(cursosDisponibles.forElement(cursosDisponibles.peek()));
 	}
 
 };

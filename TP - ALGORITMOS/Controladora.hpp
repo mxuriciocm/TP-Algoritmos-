@@ -32,9 +32,9 @@ public:
 	void inicioPrograma() {
 		login->menuRegistro();
 		this->rol = login->getRol();
-		cout << "el rol es: " << rol << endl;
+		cout << "Su rol es: " << rol << endl;
 		this->usuario = login->getUsuario();
-		cout << "el usuario es: " << usuario << endl;
+		cout << "Su usuario es: " << usuario << endl;
 		this->correo = login->getUsuario()+"@estudia.com";
 		Controladora::inicio();
 	}
@@ -66,24 +66,49 @@ public:
 						this->edad = edad;
 						this->carrera = carreraActual;
 						this->ciclo = ciclo;
-
 						break;
 					}
 				}
 			}
 			archivo.close();
 
+			int opcion = 0;
 			Alumno* alumno = new Alumno(nombre, this->usuario, this->correo);
-			cout << "Bienvenido " << alumno->getCodigo() << endl;
-			cout << "correo: " << alumno->getCorreo() << endl;
-			cout << "nombre: " << alumno->getNombre() << endl;
-			//opciones 
-			cout << "1. Ver cursos" << endl;
-			cout << "2. Ver notas" << endl;
-			cout << "3. Matricularse" << endl;
-			cout << "4. Salir de curso" << endl;
-			cout << "5. Cerrar sessión" << endl;
+			while (opcion != 5 ) {
+				cout << "Bienvenido " << alumno->getCodigo() << ", que deseas realizar?" << endl;
+				//cout << "correo: " << alumno->getCorreo() << endl;
+				//cout << "nombre: " << alumno->getNombre() << endl;
+				//opciones 
+				cout << "1. Ver cursos" << endl;
+				cout << "2. Ver notas" << endl;
+				cout << "3. Matricularse" << endl;
+				cout << "4. Retirarse de un curso" << endl;
+				cout << "5. Cerrar sesion" << endl;
+				cout << "Ingrese una opcion: ";
+				cin >> opcion;
+				switch (opcion)
+				{
+				case 1:
+					alumno->mostrarCursos();
+					break;
+				case 2:
+					break;
+				case 3:
+					cout << "Cursos disponibles:" << endl;
+					alumno->mostrarCursos();
+					cout << "Ingrese el codigo del curso: ";
+					
 
+					break;
+				case 4:
+					break;
+				case 5:
+					system("cls");
+					break;
+				}
+			}
+		
+			
 		}else if(rol == "profesor"){
 			cout << "menu profesor";
 

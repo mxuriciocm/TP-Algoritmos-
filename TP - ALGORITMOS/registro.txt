@@ -1,4 +1,1 @@
-u20221 12345 alumno diego 19 software 3
-u202212912 ksaadsada alumno mauric 13 msadsa 3
-u20232323 1213232 alumno Mauricio 15 Software 5
-u202233232 12345 alumno mauricio 15 software 6
+

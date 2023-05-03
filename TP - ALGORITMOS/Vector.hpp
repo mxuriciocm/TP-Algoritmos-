@@ -24,7 +24,7 @@ public:
         if (idx == capacity - 1) { // 2
             capacity *= 2; // 2
             X* aux = new X[capacity]; // 2
-            for (int i = 0; i <= idx; i++) { //1 + n(1 INTERNO +  2)
+            for (int i = 0; i <= idx; i++) { //1 + n(2 + INTERNO +  2)
                 aux[i] = vec[i]; // 3
             }
             delete[] vec; // 1
@@ -32,8 +32,14 @@ public:
         }
         vec[++idx] = x; // 2
     }
-    // 7 N(3 + 3 ) + 4 
+    // 7 + N(7) + 4 
 
+
+    void at() {
+        if (idx != -1) {
+			return vec[idx];
+		}
+    }
 
     void pop_back() {
         if (idx != -1) {

@@ -10,5 +10,13 @@ public:
 	Evaluaciones(unsigned short porcentaje = 0) : porcentaje(porcentaje) {}
 	~Evaluaciones() {}
 
+void mostrarEvaluaciones(){
+cout << "15% = Practica 1" << endl;
+cout << "25% = Practica 2" << endl;
+cout << "25% = Evaluacion Parcial" << endl;
+cout << "35% = Evaluacion Final" << endl;
+}
+
+
 };
 #endif // !__EVALUACIONES_HPP__

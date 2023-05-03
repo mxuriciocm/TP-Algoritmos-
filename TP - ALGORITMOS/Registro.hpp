@@ -54,19 +54,15 @@ public:
 		{
 			this->usuario = usuario;
 			//Pedir datos al usuario
-			cout << "Ingrese su nombre:";	
+			cout << "Ingrese su nombre: ";	
 			cin >> nombre;
-			cout << "Ingrese su edad:";
+			cout << "Ingrese su edad: ";
 			cin >> edad;
-			cout << "Ingrese su carrera:";
+			cout << "Ingrese su carrera: ";
 			cin >> carrera;
-			cout << "Ingrese su ciclo:";
+			cout << "Ingrese su ciclo: ";
 			cin >> ciclo;
-			
-			//while(archivo<<usuario<<contrasena<<rol<<nombre<<edad<<carrera<<ciclo){
-				
-			//}
-	
+			system("cls");
 			//guardar en el archivo
 			archivo.open("registro.txt", std::ios::app);
 			
@@ -94,7 +90,7 @@ public:
 				archivo << carrera << " ";
 				archivo << ciclo << endl;
 				archivo.close();
-				cout << "Registro exitoso" << endl;
+				cout << "Registro exitoso!" << endl;
 			}
 			else {
 				cout << "Error al abrir el archivo" << endl;
@@ -155,14 +151,14 @@ public:
 	void menuRegistro() {
 		string usuarioIngresada, contrasenaIngresada;
 		int opc;
-		cout << "Bienvenido a la aplicacion" << endl;
+		cout << "Aplicacion Gestion Educativa" << endl;
 		cout << "1. Registrarse" << endl;
 		cout << "2. Iniciar sesion" << endl;
 		cout << "Ingrese una opcion: ";
 		cin >> opc;
 		switch (opc) {
 			case 1: {
-			cout << "\nIngrese su usuario: ";
+			cout << "Ingrese su usuario: ";
 			cin >> usuarioIngresada;
 			cout << "Ingrese su contrasena: ";
 			cin >> contrasenaIngresada;
@@ -176,12 +172,13 @@ public:
 			}
 		
 		case 2: {
-			cout << "Ingrese su usuario: " << endl;
+			cout << "Ingrese su usuario: ";
 			cin >> usuarioIngresada;
-			cout << "Ingrese su contrasena: " << endl;
+			cout << "Ingrese su contrasena: ";
 			cin >> contrasenaIngresada;
 			if (usuarioIngresada != "" && contrasenaIngresada != "") {
 				validarRegistro(usuarioIngresada, contrasenaIngresada);
+				system("cls");
 			}
 			else {
 				cout << "Usuario o contrasena invalidos" << endl;

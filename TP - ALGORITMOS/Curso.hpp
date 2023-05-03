@@ -2,6 +2,10 @@
 #define __CURSO_HPP__
 #include <iostream>
 #include <string>
+#include "Evaluaciones.hpp"
+#include "stack.hpp"
+#include "Alumno.hpp"
+
 using namespace std;
 
 class Curso{
@@ -29,6 +33,7 @@ public:
 	unsigned short getCiclo() {
 		return ciclo;
 	}
+	
 };
 
 #endif // !__CURSO_HPP__

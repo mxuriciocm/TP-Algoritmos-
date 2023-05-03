@@ -140,6 +140,7 @@
     <ClInclude Include="Profesor.hpp" />
     <ClInclude Include="Registro.hpp" />
     <ClInclude Include="Evaluaciones.hpp" />
+    <ClInclude Include="stack.hpp" />
     <ClInclude Include="Vector.hpp" />
   </ItemGroup>
   <ItemGroup>

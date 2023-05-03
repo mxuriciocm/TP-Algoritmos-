@@ -26,9 +26,6 @@ public:
 	virtual string getCorreo(){
 		return correo;
 	}
-	virtual string toString() {
-		return nombre + " " + rol + " " + to_string(edad) + "\n";
-	}
 };
 
 #endif // !__PERSONA_HPP__
