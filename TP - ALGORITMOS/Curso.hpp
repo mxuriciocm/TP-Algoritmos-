@@ -2,7 +2,6 @@
 #define __CURSO_HPP__
 #include <iostream>
 #include <string>
-#include "Evaluaciones.hpp"
 #include "stack.hpp"
 #include "Alumno.hpp"
 
