@@ -43,7 +43,7 @@ public:
 		string linea;
 		bool usuarioEncontrado = false;
 
-		while (getline(archivo1, linea)) {
+		while (getline(archivo1, linea, ' ')) {
 			if (linea == usuario) {
 				cout << "El usuario ya existe" << endl;	
 				usuarioEncontrado = true;
@@ -52,6 +52,7 @@ public:
 		}
 		if (!usuarioEncontrado)
 		{
+			this->usuario = usuario;
 			//Pedir datos al usuario
 			cout << "Ingrese su nombre:";	
 			cin >> nombre;
@@ -61,8 +62,12 @@ public:
 			cin >> carrera;
 			cout << "Ingrese su ciclo:";
 			cin >> ciclo;
-
-
+			
+			//while(archivo<<usuario<<contrasena<<rol<<nombre<<edad<<carrera<<ciclo){
+				
+			//}
+	
+			//guardar en el archivo
 			archivo.open("registro.txt", std::ios::app);
 			
 			if (archivo.is_open()) {
