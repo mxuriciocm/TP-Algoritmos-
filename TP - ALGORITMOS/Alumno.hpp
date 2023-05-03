@@ -51,8 +51,52 @@ public:
 		});
 	}
 
-	void matriculaCurso(){
-		//cursosMatriculados.push(cursosDisponibles.forElement(cursosDisponibles.peek()));
+	void matriculaCurso(string codigo){
+		//Elegir curso
+		ifstream archivo;
+		archivo.open("Cursos.txt");
+		string idx, nombre, codigoCurso;
+		unsigned short ciclo;
+		while (archivo >> idx >> nombre >> codigoCurso >> ciclo) {
+			if (codigoCurso == codigo) {
+				cursosMatriculados.push(new Curso(nombre, codigoCurso, carrera, ciclo));
+				cout << "Curso matriculado" << endl;
+				break;
+			}
+		}
+	}
+	void verCursosMatriculados() {
+		cursosMatriculados.forEach(
+			[](Curso* c) {
+				cout << c->toString() << endl;
+			}
+		);
+	}
+
+	void verNotas() {
+		if (cursosMatriculados.isEmpty()) {
+			cout << "No hay cursos matriculados" << endl;
+			return;
+		}
+		else {
+			cursosMatriculados.forEach([](Curso* c) {
+				cout << "Nombre del curso: " << c->getNombre() << c->getNotaFinal() << endl;
+				}
+			);
+		}
+	}
+
+	void retirarseDelCurso() {
+		if (cursosMatriculados.isEmpty())
+		{
+			cout << "No hay cursos matriculados" << endl;
+		}else{
+			cursosMatriculados.popElementIf([](Curso* c) {
+					return c->getNota() < 13;
+				}
+			);
+			cout << "Se completo con el retiro del curso o cursos con calificaión menor a 13" << endl;
+		}
 	}
 
 };

@@ -6,6 +6,7 @@
 #include <string>
 #include <sstream>
 #include <fstream>
+#include <conio.h>
 
 using std::endl;
 using std::string;
@@ -75,6 +76,7 @@ public:
 			int opcion = 0;
 			Alumno* alumno = new Alumno(nombre, this->usuario, this->correo);
 			while (opcion != 5 ) {
+				system("cls");
 				cout << "Bienvenido " << alumno->getCodigo() << ", que deseas realizar?" << endl;
 				//cout << "correo: " << alumno->getCorreo() << endl;
 				//cout << "nombre: " << alumno->getNombre() << endl;
@@ -89,18 +91,31 @@ public:
 				switch (opcion)
 				{
 				case 1:
+				{
 					alumno->mostrarCursos();
+					system("pause");
+				}
 					break;
 				case 2:
+					alumno->verNotas();
+					system("pause");
 					break;
 				case 3:
-					cout << "Cursos disponibles:" << endl;
+				{	cout << "Cursos disponibles:" << endl;
 					alumno->mostrarCursos();
 					cout << "Ingrese el codigo del curso: ";
-					
-
+					string codigo;
+					cin >> codigo;
+					alumno->matriculaCurso(codigo);
+					//cursos matriculados
+					cout << "Cursos matriculados:" << endl;
+					alumno->verCursosMatriculados();
+					system("pause");
+				}
 					break;
 				case 4:
+					alumno->retirarseDelCurso();
+					system("pause");
 					break;
 				case 5:
 					system("cls");

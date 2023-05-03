@@ -105,6 +105,34 @@ public:
 	bool isEmpty() {
 		return inicio == nullptr;
 	}
+	void popElementIf(std::function<bool(T)> comparacion);
 };
+template <class T>
+void Stack<T>::popElementIf(std::function<bool(T)> comparacion) {
+	Nodo<T>* nodoActual = inicio;
+	Nodo<T>* nodoAnterior = nullptr;
+
+	while (nodoActual != nullptr) {
+		if (comparacion(nodoActual->element)) {
+			if (nodoAnterior == nullptr) {
+				inicio = nodoActual->sig;
+				inicio->ant = nodoActual->ant;
+				nodoActual->ant->sig = inicio;
+			}
+			else {
+				nodoAnterior->sig = nodoActual->sig;
+				nodoActual->sig->ant = nodoAnterior;
+			}
+
+			--size;
+			delete nodoActual;
+			return;
+		}
+
+		nodoAnterior = nodoActual;
+		nodoActual = nodoActual->sig;
+	}
+}
+
 
 #endif // !__STACK_HPP__
