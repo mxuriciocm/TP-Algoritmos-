@@ -7,7 +7,7 @@ using namespace std;
 
 class Alumno : public Persona{
 private:
-	unsigned int ciclo;
+	unsigned short ciclo;
 	string carrera;
 	vector<Curso*> cursos;
 public:

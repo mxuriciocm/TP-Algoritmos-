@@ -4,6 +4,7 @@
 #include "Alumno.hpp"
 #include <iostream>
 #include <string>
+#include <sstream>
 #include <fstream>
 
 using std::endl;
@@ -13,9 +14,15 @@ using std::cout;
 class Controladora {
 private:
 	Registro* login;
-	string rol;
 	string usuario;
+	string contrasena;
+	string rol;
+	string nombre;
+	unsigned short edad;
+	string carrera;
+	unsigned short ciclo;
 	string correo;
+
 public:
 	Controladora(string rol = ""): rol(rol) {
 		login = new Registro();
@@ -25,7 +32,9 @@ public:
 	void inicioPrograma() {
 		login->menuRegistro();
 		this->rol = login->getRol();
+		cout << "el rol es: " << rol << endl;
 		this->usuario = login->getUsuario();
+		cout << "el usuario es: " << usuario << endl;
 		this->correo = login->getUsuario()+"@estudia.com";
 		Controladora::inicio();
 	}
@@ -35,7 +44,7 @@ public:
 		if (rol == "alumno") {
 			ifstream archivo;
 			string linea;
-			string contrasena, tipo, nombre, carrera;
+			string usuarioActual, contrasenaActual, rolActual, nombreActual, carreraActual;
 			unsigned short edad, ciclo;
 
 			archivo.open("registro.txt");
@@ -48,17 +57,16 @@ public:
 			{
 				while (getline(archivo, linea))
 				{
-					string UserEncontrar;
-					archivo >> UserEncontrar;
-					if (UserEncontrar == this->usuario)
-					{
-						cout << "usuario encontrado" << endl;
-						archivo >> contrasena;
-						archivo >> tipo;
-						archivo >> nombre;
-						archivo >> edad;
-						archivo >> carrera;
-						archivo >> ciclo;
+					istringstream ss(linea);
+					ss >> usuarioActual >> contrasenaActual >> rolActual >> nombreActual >> edad >> carreraActual >> ciclo;
+					if (usuarioActual == this->usuario) {
+						//guardar en las clase todos los datos
+						this->rol = rolActual;
+						this->nombre = nombreActual;
+						this->edad = edad;
+						this->carrera = carreraActual;
+						this->ciclo = ciclo;
+
 						break;
 					}
 				}
