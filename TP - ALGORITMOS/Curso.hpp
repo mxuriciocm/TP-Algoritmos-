@@ -6,6 +6,7 @@
 #include "stack.hpp"
 #include "Alumno.hpp"
 
+
 using namespace std;
 
 class Curso{
@@ -18,7 +19,7 @@ class Curso{
 	int idx;
 public:
 	Curso(string nombre = "", string seccion="",string codigoCurso="", unsigned short ciclo = 1, int idx = 0, int notaFinal = 0):notaFinal(notaFinal), idx(idx), ciclo(ciclo), nombre(nombre), seccion(seccion), codigoCurso(codigoCurso), carrera(carrera){
-		this->notaFinal = rand() % 21;
+		this->notaFinal = rand() % 21 + 1;
 	}
 	~Curso(){
 	}

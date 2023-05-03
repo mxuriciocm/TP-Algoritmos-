@@ -54,9 +54,6 @@
     <ClInclude Include="Evaluaciones.hpp">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Vector.hpp">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="stack.hpp">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>

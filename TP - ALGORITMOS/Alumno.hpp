@@ -2,7 +2,6 @@
 #define __ALUMNO_HPP__
 #include "Persona.hpp"
 #include "Curso.hpp"
-#include "Vector.hpp"
 #include "stack.hpp"
 #include <fstream>
 #include <string>

@@ -112,7 +112,7 @@ void Stack<T>::popElementIf(std::function<bool(T)> comparacion) {
 	Nodo<T>* nodoActual = inicio;
 	Nodo<T>* nodoAnterior = nullptr;
 
-	while (nodoActual != nullptr) {
+	while (!isEmpty()) {
 		if (comparacion(nodoActual->element)) {
 			if (nodoAnterior == nullptr) {
 				inicio = nodoActual->sig;
@@ -128,7 +128,6 @@ void Stack<T>::popElementIf(std::function<bool(T)> comparacion) {
 			delete nodoActual;
 			return;
 		}
-
 		nodoAnterior = nodoActual;
 		nodoActual = nodoActual->sig;
 	}
